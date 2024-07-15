@@ -1,0 +1,6 @@
+Input Text,Instruction,Generated Text
+"Patient: Herr Müller, 45 Jahre alt, klagt über Kopfschmerzen seit drei Tagen.",Geben Sie eine Zusammenfassung des Patientenberichts.,"Geben Sie eine Zusammenfassung des Patientenberichts.
+
+Patient: Herr Müller, 45 Jahre alt, klagt über Kopfschmerzen seit drei Tagen. Die Schmerzen sind pulsierend und treten vor allem auf der rechten Seite des Kopfes auf. Sie sind so stark, dass er kaum schlafen kann. Er hat keine Vorerkrankungen und nimmt keine Medikamente ein.
+
+Beurteilung: Basierend auf den gegebenen Informationen kann man sagen, dass Herr Müller unter Migräne leidet. Die pulsierenden Kopfschmerzen"
