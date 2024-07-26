@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bf0ee6aa-e7fd-4867-be1c-412dcee76109" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Thesis/LSTM/Implementation_Balance.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Thesis/LSTM/Implementation_Embedding.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Thesis/LSTM/Implementation_Weights.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Thesis/LSTM/Tests/Test3.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/.idea/Thesis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/.idea/Thesis.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/Embeddings_Bert.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/LSTM/Tests/Embeddings_Bert.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/Embeddings_W2V.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/LSTM/Tests/Embeddings_W2V.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/Encoding.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/LSTM/Tests/Encoding.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/LSTM/Tests/Evaluation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/Implementation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/LSTM/Tests/Implementation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/LSTM.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/LSTM/Tests/LSTM.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/Test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/LSTM/Tests/Test.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/Test2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/LSTM/Tests/Test2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/Test3.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/brockie.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/LSTM/Broker/brockie.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/brokerchooser.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/LSTM/Broker/brokerchooser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/grouped_products_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/LSTM/Tests/grouped_products_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/lstm_feasibility_loss_acc.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/LSTM/Tests/lstm_feasibility_loss_acc.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/products_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/LSTM/Broker/products_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/training_history.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/LSTM/Tests/training_history.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/LSTM/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/LSTM/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Thesis/Preprocessing/Data_Filtering_Heuristic.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Thesis/Preprocessing/Data_Filtering_Heuristic.ipynb" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="Jupyter Notebook" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2gDtPfoyvTddPpUCjZXBqq5qV7s" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.brokerchooser.executor&quot;: &quot;Run&quot;,
+    &quot;Python.parsing.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/juliankraus/Library/CloudStorage/OneDrive-Personal/Uni/Semester 8/Bachelorarbeit/Repo/Bachelorthesis/Thesis/LSTM&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../Thesis/LSTM" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../Thesis/LSTM/Broker" />
+      <recent name="$PROJECT_DIR$/../Thesis/LSTM/Tests" />
+      <recent name="$PROJECT_DIR$/../Thesis/LSTM" />
+      <recent name="$PROJECT_DIR$/../Thesis/.venv" />
+      <recent name="$PROJECT_DIR$/../Thesis/common" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PY-241.14494.241" />
+        <option value="bundled-python-sdk-0509580d9d50-28c9f5db9ffe-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.14494.241" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bf0ee6aa-e7fd-4867-be1c-412dcee76109" name="Changes" comment="" />
+      <created>1715243953274</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1715243953274</updated>
+      <workItem from="1715243954615" duration="6452000" />
+      <workItem from="1715604945014" duration="54000" />
+      <workItem from="1716280042386" duration="13563000" />
+      <workItem from="1717243844452" duration="10206000" />
+      <workItem from="1717409378281" duration="16329000" />
+      <workItem from="1717776029640" duration="606000" />
+      <workItem from="1717859513497" duration="29000" />
+      <workItem from="1717859551174" duration="21989000" />
+      <workItem from="1718030540303" duration="18399000" />
+      <workItem from="1718361265402" duration="9197000" />
+      <workItem from="1718432439165" duration="7675000" />
+      <workItem from="1718620798421" duration="6482000" />
+      <workItem from="1718708858888" duration="601000" />
+      <workItem from="1718710779906" duration="5118000" />
+      <workItem from="1718740154392" duration="602000" />
+      <workItem from="1718742156499" duration="22659000" />
+      <workItem from="1718968886062" duration="2259000" />
+      <workItem from="1719151385586" duration="983000" />
+      <workItem from="1719467290128" duration="598000" />
+      <workItem from="1719552937668" duration="598000" />
+      <workItem from="1719833062907" duration="599000" />
+      <workItem from="1719914011420" duration="735000" />
+      <workItem from="1720562983761" duration="1019000" />
+      <workItem from="1720777817258" duration="10295000" />
+      <workItem from="1720789451008" duration="486000" />
+      <workItem from="1720790070731" duration="332000" />
+      <workItem from="1720790617257" duration="636000" />
+      <workItem from="1720791269370" duration="1440000" />
+      <workItem from="1720804548801" duration="1409000" />
+      <workItem from="1720996018675" duration="38000" />
+      <workItem from="1720996115779" duration="1397000" />
+      <workItem from="1721028751165" duration="3445000" />
+      <workItem from="1721079398419" duration="776000" />
+      <workItem from="1721080223976" duration="18553000" />
+      <workItem from="1721156069463" duration="19432000" />
+      <workItem from="1721224312164" duration="719000" />
+      <workItem from="1721225040614" duration="1277000" />
+      <workItem from="1721226327397" duration="83000" />
+      <workItem from="1721226418074" duration="150000" />
+      <workItem from="1721226574881" duration="125000" />
+      <workItem from="1721226707497" duration="650000" />
+      <workItem from="1721227414832" duration="6231000" />
+      <workItem from="1721238820947" duration="61000" />
+      <workItem from="1721238894602" duration="30658000" />
+      <workItem from="1721339062102" duration="2340000" />
+      <workItem from="1721376182534" duration="5459000" />
+      <workItem from="1721382903167" duration="34327000" />
+      <workItem from="1721587174529" duration="4071000" />
+      <workItem from="1721634721116" duration="16055000" />
+      <workItem from="1721670560609" duration="3950000" />
+      <workItem from="1721677374899" duration="8443000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
+          <url>notebook:///Users/juliankraus/Library/CloudStorage/OneDrive-Personal/Uni/Semester 8/Bachelorarbeit/Repo/Bachelorthesis/Thesis/Embeddings_W2V.ipynb</url>
+          <line>15</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/DataParsing$parsing.coverage" NAME="parsing Coverage Results" MODIFIED="1715245378663" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DataParsing$brokerchooser.coverage" NAME="brokerchooser Coverage Results" MODIFIED="1721297050078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Thesis/LSTM" />
+  </component>
+</project>
