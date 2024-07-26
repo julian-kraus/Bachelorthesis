@@ -157,14 +157,14 @@ def process_train_test_data(train_df, valid_df, test_df, data_label, predict_lab
      plt.ylabel('Frequency')
      plt.xticks(rotation=0)
      plt.show()
-     class_weights = None
-     sample_weights = None
+     class_weight = None
+     sample_weight = None
      if class_weights or sample_weights:
-          class_weights = compute_class_weight('balanced', classes=np.unique(train_labels_enc), y=train_labels_enc)
-          class_weights = {np.unique(train_labels_enc)[i]: w for i, w in enumerate(class_weights)}
-          print(class_weights)
-          if sample_weights:
-               sample_weights = np.array([class_weights[label] for label in train_labels_enc])
+          class_weight = compute_class_weight('balanced', classes=np.unique(train_labels_enc), y=train_labels_enc)
+          class_weight = {np.unique(train_labels_enc)[i]: w for i, w in enumerate(class_weight)}
+          print(class_weight)
+          if sample_weight:
+               sample_weight = np.array([class_weight[label] for label in train_labels_enc])
           # Count each class
           values, counts = np.unique(train_df[predict_label], return_counts=True)
           class_distribution = dict(zip(values, counts))
@@ -174,13 +174,13 @@ def process_train_test_data(train_df, valid_df, test_df, data_label, predict_lab
           encoded_keys = label_encoder.transform(list(class_distribution.keys()))
           encoded_class_distribution = dict(zip(encoded_keys, counts))
           print("Encoded Class Distribution:", encoded_class_distribution)
-          if not class_weights:
-              class_weights = None
+          if not class_weight:
+              class_weight = None
      if not one_hot:
           train_labels = train_labels_enc
           valid_labels = valid_labels_enc
           test_labels = test_labels_enc
-     return train_padded, valid_padded, test_padded, train_labels, valid_labels, test_labels, label_encoder, num_classes, max_length, word_index, class_weights, sample_weights
+     return train_padded, valid_padded, test_padded, train_labels, valid_labels, test_labels, label_encoder, num_classes, max_length, word_index, class_weight, sample_weight
 
 def get_train_test_data(df, data_label, predict_label, balanced=False, lables=None, class_weights=False, sample_weights=False, one_hot=True):
 
