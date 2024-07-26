@@ -1,9 +1,0 @@
-,precision,recall,f1-score,support
-cruciate_urgent,0.0,0.0,0.0,9.0
-meniskus_low,0.0,0.0,0.0,7.0
-meniskus_urgent,0.71,0.95,0.81,39.0
-other,0.92,1.0,0.96,44.0
-other_urgent,0.0,0.0,0.0,1.0
-accuracy,0.81,0.81,0.81,0.81
-macro avg,0.33,0.39,0.35,100.0
-weighted avg,0.68,0.81,0.74,100.0

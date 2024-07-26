@@ -24,6 +24,36 @@ from tensorflow.keras.utils import to_categorical
 from sklearn.preprocessing import LabelEncoder
 import pickle
 import tensorflow as tf
+import logging
+tf.get_logger().setLevel(logging.ERROR)
+import warnings
+warnings.filterwarnings('ignore', category=UserWarning)
+warnings.filterwarnings('ignore', message='Precision is ill-defined and being set to 0.0 in labels with no predicted samples.')
+from absl import logging
+logging.set_verbosity(logging.ERROR)  # Ignore INFO and WARNING
+model_type = "lstm"
+
+def get_standard_parameters():
+    optimizer = Adam()
+    loss = tf.keras.losses.CategoricalCrossentropy()
+    metrics=[
+        tf.keras.metrics.CategoricalAccuracy(name='accuracy'),
+        tf.keras.metrics.AUC(name='auc'),
+        tf.keras.metrics.F1Score(average="macro", name='f1_score'),
+    ]
+    early_stopping_callback = EarlyStopping(
+        monitor='val_f1_score',  
+        patience=3,         
+        restore_best_weights=True,
+        verbose=1
+    )
+    embedding_dim = 300
+    lstm_units = 64
+    epochs = 15
+    batch_size = 32 
+    return optimizer, loss, metrics, early_stopping_callback, embedding_dim, lstm_units, epochs, batch_size
+
+
 def eval_training(history, metrics):
      history_dict = history.history
      epochs = range(1, len(history_dict['loss']) + 1)
@@ -45,7 +75,8 @@ def eval_training(history, metrics):
 
      plt.tight_layout()
      plt.show()
-def eval(model, test_padded, test_labels, label_encoder, file_path=None):
+
+def eval(model, test_padded, test_labels, label_encoder, model_name=""):
      # Predict classes on the test data
      test_predictions = model.predict(test_padded)
      test_predicted_classes = np.argmax(test_predictions, axis=1)
@@ -55,20 +86,6 @@ def eval(model, test_padded, test_labels, label_encoder, file_path=None):
      test_predicted_labels = label_encoder.inverse_transform(test_predicted_classes)
      test_true_labels = label_encoder.inverse_transform(test_true_classes)
 
-     # Confusion matrix
-     # conf_matrix = confusion_matrix(test_true_labels, test_predicted_labels, labels=label_encoder.classes_)
-     # plt.figure(figsize=(6, 3))
-     # sns.heatmap(conf_matrix, annot=True, fmt="d", cmap='Blues', xticklabels=label_encoder.classes_,
-     #             yticklabels=label_encoder.classes_)
-     # plt.xlabel('Predicted Label')
-     # plt.ylabel('True Label')
-     # plt.title('Confusion Matrix')
-     # plt.show()
-     #
-     # from sklearn.metrics import f1_score
-     # print("F1: " + str(f1_score(test_true_labels, test_predicted_labels, average='micro')))
-    # Display the classification report table
-     # Classification report
      class_report = classification_report(test_true_labels, test_predicted_labels, output_dict=True)
      class_report_df = pd.DataFrame(class_report).transpose()
      class_report_df = class_report_df.round(2)
@@ -85,20 +102,17 @@ def eval(model, test_padded, test_labels, label_encoder, file_path=None):
      the_table.auto_set_font_size(False)
      the_table.set_fontsize(10)
      the_table.scale(1.2, 1.2)  # Scale table size
-
+     plt.title(f"{model_name}", fontsize=12, weight='bold', pad=20)
      # Display the plot
      plt.show()
      # Save to CSV
-     if file_path is not None:
-          class_report_df.to_csv(file_path)
-     print(class_report)
+     if model_name != "":
+          class_report_df.to_csv("../reports/" + model_type + "/" + model_name + "_report")
 
 def compare_models(models_data):
     for model_data in models_data:
         model, test_data, test_labels, label_encoder, model_name = model_data
-        file_path = f'reports/{model_name}_report.csv'
-        print(f"Evaluating model: {model_name}")
-        eval(model, test_data, test_labels, label_encoder, file_path)
+        eval(model, test_data, test_labels, label_encoder, model_name)
 
 def process_train_test_data(train_df, valid_df, test_df, data_label, predict_label, lables=None, class_weights=False, sample_weights=False, one_hot=True):
      train_texts = train_df[data_label]
@@ -152,7 +166,7 @@ def process_train_test_data(train_df, valid_df, test_df, data_label, predict_lab
           if sample_weights:
                sample_weights = np.array([class_weights[label] for label in train_labels_enc])
           # Count each class
-          values, counts = np.unique(df[predict_label], return_counts=True)
+          values, counts = np.unique(train_df[predict_label], return_counts=True)
           class_distribution = dict(zip(values, counts))
           print("Original Class Distribution:", class_distribution)
 
@@ -200,8 +214,8 @@ from keras.models import load_model
 
 def save_for_evaluation(model, history, model_name, test_data, test_labels, label_encoder):
     # Create model and data directories if they don't exist
-    model_dir = f'models/{model_name}'
-    data_dir = f'data/{model_name}'
+    model_dir = f'../models/{model_type}/{model_name}'
+    data_dir = f'../data/{model_type}/{model_name}'
     if not os.path.exists(model_dir):
         os.makedirs(model_dir)
     if not os.path.exists(data_dir):
@@ -237,11 +251,11 @@ def save_for_evaluation(model, history, model_name, test_data, test_labels, labe
 
 def load_for_evaluation(model_name):
     # Define paths for the saved files
-    model_path = f'models/{model_name}/{model_name}.h5'
-    history_path = f'data/{model_name}/{model_name}_history.pkl'
-    data_path = f'data/{model_name}/{model_name}_test_data.pkl'
-    label_path = f'data/{model_name}/{model_name}_test_label.pkl'
-    encoder_path = f'data/{model_name}/{model_name}_encoder.pkl'
+    model_path = f'../models/{model_type}/{model_name}/{model_name}.h5'
+    history_path = f'../data/{model_type}/{model_name}/{model_name}_history.pkl'
+    data_path = f'../data/{model_type}/{model_name}/{model_name}_test_data.pkl'
+    label_path = f'../data/{model_type}/{model_name}/{model_name}_test_label.pkl'
+    encoder_path = f'../data/{model_type}/{model_name}/{model_name}_encoder.pkl'
     
     # Load the model
     model = load_model(model_path)
