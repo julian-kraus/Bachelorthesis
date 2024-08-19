@@ -11,3 +11,6 @@ Thesis/models
 *.png
 .idea/
 *.xml
+*.keras
+*.sh
+*.pb
