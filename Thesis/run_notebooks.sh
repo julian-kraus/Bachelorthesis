@@ -3,28 +3,13 @@
 echo "Script started"
 
 # Define the path to the notebooks
-notebook_path="./LSTM"
+notebook_path="./LLM"
 
 # List of notebooks to run
 notebooks=(
     #"$notebook_path/implementation_attention.ipynb"
-    "$notebook_path/implementation_baseline.ipynb"
-    "$notebook_path/implementation_batchnormalization.ipynb"
-    "$notebook_path/implementation_conv_layer.ipynb"
-    "$notebook_path/implementation_dropout_less.ipynb"
-    "$notebook_path/implementation_dropout_more.ipynb"
-    #"$notebook_path/implementation_dropout_recurrent.ipynb"
-    "$notebook_path/implementation_L1_L2.ipynb"
-    "$notebook_path/implementation_L1.ipynb"
-    "$notebook_path/implementation_L2.ipynb"
-    "$notebook_path/implementation_layers_less.ipynb"
-    "$notebook_path/implementation_layers_more.ipynb"
-    #"$notebook_path/implementation_learning_rate_finder.ipynb"
-    "$notebook_path/implementation_learning_rate_scheduler.ipynb"
-    "$notebook_path/implementation_oversampling.ipynb"
-    #"$notebook_path/implementation_tuner.ipynb"
-    "$notebook_path/implementation_undersampling.ipynb"
-    "$notebook_path/implementation_weights.ipynb"
+    "$notebook_path/classification/BERT_training_balanced_oversampled_med_epoch_15.ipynb"
+    "$notebook_path/classification/BERT_pooling_max.ipynb"
 )
 
 
