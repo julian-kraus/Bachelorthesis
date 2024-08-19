@@ -1,5 +1,5 @@
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -31,7 +31,27 @@ warnings.filterwarnings('ignore', category=UserWarning)
 warnings.filterwarnings('ignore', message='Precision is ill-defined and being set to 0.0 in labels with no predicted samples.')
 from absl import logging
 logging.set_verbosity(logging.ERROR)  # Ignore INFO and WARNING
+from tensorflow.keras.utils import plot_model, model_to_dot
+
+
 model_type = "lstm"
+
+def minimize_report(df, model_name):
+    df = df.drop(df.index[[0, 1, 2, 3, 4]])
+    acc = df["precision"].iloc[0]
+    pw = df["precision"].iloc[2]
+    rw = df["recall"].iloc[2]
+    fw = df["f1-score"].iloc[2]
+    fm = df["f1-score"].iloc[1]
+    data = {
+        "model": [model_name],
+        "$accuracy$": [acc],
+        "$precision_{w}$": [pw],
+        "$recall_{w}$": [rw],
+        "$f1_{w}$": [fw],
+        "$f1_{mac}$": [fm],
+    }
+    return pd.DataFrame(data)
 
 def get_standard_parameters():
     optimizer = Adam()
@@ -43,7 +63,7 @@ def get_standard_parameters():
     ]
     early_stopping_callback = EarlyStopping(
         monitor='val_f1_score',  
-        patience=3,         
+        patience=8,         
         restore_best_weights=True,
         verbose=1
     )
@@ -76,7 +96,7 @@ def eval_training(history, metrics):
      plt.tight_layout()
      plt.show()
 
-def eval(model, test_padded, test_labels, label_encoder, model_name=""):
+def eval(model, test_padded, test_labels, label_encoder, model_name="", conf=True):
      # Predict classes on the test data
      test_predictions = model.predict(test_padded)
      test_predicted_classes = np.argmax(test_predictions, axis=1)
@@ -94,8 +114,18 @@ def eval(model, test_padded, test_labels, label_encoder, model_name=""):
      # Hide axes
      ax.axis('tight')
      ax.axis('off')
-
+     min_report = minimize_report(class_report_df, model_name)
      # Create the table and adjust properties as needed
+     the_table = ax.table(cellText=min_report.values, colLabels=min_report.columns, rowLabels=min_report.index, loc='center', cellLoc = 'center', rowLoc = 'center')
+
+     # Optionally, resize cells
+     the_table.auto_set_font_size(False)
+     the_table.set_fontsize(10)
+     the_table.scale(1.2, 1.2)  # Scale table size
+     plt.title(f"{model_name}", fontsize=12, weight='bold', pad=20)
+     # Display the plot
+     plt.show()
+
      the_table = ax.table(cellText=class_report_df.values, colLabels=class_report_df.columns, rowLabels=class_report_df.index, loc='center', cellLoc = 'center', rowLoc = 'center')
 
      # Optionally, resize cells
@@ -107,26 +137,55 @@ def eval(model, test_padded, test_labels, label_encoder, model_name=""):
      plt.show()
      # Save to CSV
      if model_name != "":
-          class_report_df.to_csv("../reports/" + model_type + "/" + model_name + "_report")
+          class_report_df.to_csv("../reports/" + model_type + "/" + model_name + "_report.csv")
+     #minimize_report.to_csv("../reports/" + model_type + "/" + model_name + "_report_min")
+
+              # Plot confusion matrix if conf is True
+     if conf:
+        corrected_classes = [label.replace("meniskus", "meniscus") for label in label_encoder.classes_]
+
+        # Calculate the confusion matrix
+        cm = confusion_matrix(test_true_labels, test_predicted_labels, labels=label_encoder.classes_)
+
+        # Plotting the confusion matrix using seaborn
+        plt.figure(figsize=(5, 4))  # Adjust the figure size as necessary
+        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=corrected_classes, yticklabels=corrected_classes)
+        plt.xlabel('Predicted Labels')
+        plt.ylabel('True Labels')
+        plt.title('Confusion Matrix')
+        plt.show()
+
+    # Visualize the model
+     plot_model(model, to_file='../reports/' + model_type + '/' + model_name + '.png', show_layer_activations=True)
+     return min_report
 
 def compare_models(models_data):
+    comp_reports = pd.DataFrame()
+    model_names = []
     for model_data in models_data:
         model, test_data, test_labels, label_encoder, model_name = model_data
-        eval(model, test_data, test_labels, label_encoder, model_name)
+        model_names.append(model_name)
+        report = eval(model, test_data, test_labels, label_encoder, model_name, conf=True)
+        comp_reports = pd.concat([comp_reports, report])
+
+    filename = "_".join(model_names) + "_report_min.csv"
+    comp_reports.to_csv(f"../reports/{model_type}/{filename}", index=False)
 
 def process_train_test_data(train_df, valid_df, test_df, data_label, predict_label, lables=None, class_weights=False, sample_weights=False, one_hot=True):
-     train_texts = train_df[data_label]
-     valid_texts = valid_df[data_label]
-     test_texts = test_df[data_label]
+     train_texts = train_df[data_label].astype(str)
+     valid_texts = valid_df[data_label].astype(str)
+     test_texts = test_df[data_label].astype(str)
 
      # Tokenize texts
-     tokenizer = Tokenizer(num_words=10000)
-     tokenizer.fit_on_texts(train_texts)  # Only fit on train data
+     #tokenizer = Tokenizer(num_words=10000)
+     #tokenizer.fit_on_texts(train_texts)  # Only fit on train data
+     with open("tokenizer.pickle", 'rb') as file:
+        tokenizer = pickle.load(file)
      word_index = tokenizer.word_index
      train_sequences = tokenizer.texts_to_sequences(train_texts)
      valid_sequences = tokenizer.texts_to_sequences(valid_texts)
      test_sequences = tokenizer.texts_to_sequences(test_texts)
-     max_length = max(len(sequence) for sequence in train_sequences) + 30
+     max_length = 222
      # Padding sequences
      train_padded = pad_sequences(train_sequences, maxlen=max_length, padding='post')
      valid_padded = pad_sequences(valid_sequences, maxlen=max_length, padding='post')
@@ -134,8 +193,9 @@ def process_train_test_data(train_df, valid_df, test_df, data_label, predict_lab
 
      # Initialize the label encoder
      all_labels = pd.concat([train_df[predict_label], valid_df[predict_label], test_df[predict_label]])
-     label_encoder = LabelEncoder()
-     label_encoder.fit(all_labels)
+
+     with open("label_encoder.pickle", 'rb') as file:
+        label_encoder = pickle.load(file)
      # Fit label encoder and return encoded labels as integers
      train_labels_enc = label_encoder.transform(train_df[predict_label])
      valid_labels_enc = label_encoder.transform(valid_df[predict_label])
@@ -249,7 +309,7 @@ def save_for_evaluation(model, history, model_name, test_data, test_labels, labe
     print("Data saved")
 
 
-def load_for_evaluation(model_name):
+def load_for_evaluation(model_name, load_history=False):
     # Define paths for the saved files
     model_path = f'../models/{model_type}/{model_name}/{model_name}.h5'
     history_path = f'../data/{model_type}/{model_name}/{model_name}_history.pkl'
@@ -278,4 +338,7 @@ def load_for_evaluation(model_name):
         label_encoder = pickle.load(file)
     
     print("Data loaded successfully")
-    return model, test_data, test_labels, label_encoder, model_name
+    if load_history:
+        return model, test_data, test_labels, label_encoder, model_name, history
+    else:
+        return model, test_data, test_labels, label_encoder, model_name

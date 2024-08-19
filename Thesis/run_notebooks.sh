@@ -7,8 +7,11 @@ notebook_path="./LSTM"
 
 # List of notebooks to run
 notebooks=(
-    #"$notebook_path/implementation_attention.ipynb"
-    "$notebook_path/implementation_baseline.ipynb"
+    "$notebook_path/implementation_bert.ipynb"
+    "$notebook_path/implementation_tuner.ipynb"
+    "$notebook_path/implementation_word2vec.ipynb"
+    "$notebook_path/implementation_attention.ipynb"
+    #"$notebook_path/implementation_baseline.ipynb"
     "$notebook_path/implementation_batchnormalization.ipynb"
     "$notebook_path/implementation_conv_layer.ipynb"
     "$notebook_path/implementation_dropout_less.ipynb"
@@ -22,7 +25,6 @@ notebooks=(
     #"$notebook_path/implementation_learning_rate_finder.ipynb"
     "$notebook_path/implementation_learning_rate_scheduler.ipynb"
     "$notebook_path/implementation_oversampling.ipynb"
-    #"$notebook_path/implementation_tuner.ipynb"
     "$notebook_path/implementation_undersampling.ipynb"
     "$notebook_path/implementation_weights.ipynb"
 )
