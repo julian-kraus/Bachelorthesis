@@ -9,3 +9,5 @@ Thesis/models
 *.txt
 *.h5
 *.png
+.idea/
+*.xml
